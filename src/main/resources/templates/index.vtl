@@ -9,8 +9,11 @@
   <button type="submit" class="btn btn-default">Add stylist</button>
 </form>
 
+<br>
+<h3> Stylist list:</h3>
+
 <ul>
   #foreach($stylist in $stylists)
-    <li><a href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
+    <li><a href="/stylist_detail/$stylist.getId()">$stylist.getName()</a></li>
   #end
 </ul>

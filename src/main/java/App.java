@@ -27,6 +27,28 @@ public class App {
       return null;
     });
 
+    get("/stylist_detail/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      model.put("stylist", stylist);
+      model.put("clients", stylist.getClients());
+      model.put("template", "templates/stylist_detail.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/assignclient/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Integer id = Integer.parseInt(request.queryParams("stylistId"));
+
+      Stylist stylist = Stylist.find(id);
+
+      String clientName = request.queryParams("client");
+      Client newClient = new Client(clientName);
+      newClient.save();
+      newClient.assignStylist(id);
+      response.redirect("/stylist_detail/" + id.toString());
+      return null;
+    });
 
   }
 }
