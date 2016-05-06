@@ -13,11 +13,36 @@ public class Stylist {
     return name;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public static List<Stylist> all() {
     String sql = "SELECT * FROM STYLISTS";
     try (Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
   }
-  
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO stylists(name) VALUES (:name)";
+      this.id = (int) con.createQuery(sql, true)
+      .addParameter("name", this.name)
+      .executeUpdate()
+      .getKey();
+    }
+  }
+
+  @Override
+    public boolean equals(Object otherStylist) {
+      if (!(otherStylist instanceof Stylist)) {
+        return false;
+      } else {
+        Stylist newStylist = (Stylist) otherStylist;
+        return this.getName().equals(newStylist.getName()) &&
+               this.getId() == newStylist.getId();
+    }
+  }
+
 }

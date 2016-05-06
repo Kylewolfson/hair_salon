@@ -20,6 +20,11 @@ public class StylistTest {
     assertEquals(Stylist.all().size(), 0);
   }
 
-
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Stylist myStylist = new Stylist("Rook");
+    myStylist.save();
+    assertTrue(Stylist.all().get(0).equals(myStylist));
+  }
 
 }
