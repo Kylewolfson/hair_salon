@@ -8,4 +8,13 @@ public class StylistTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
+
+  @Test
+  public void stylist_instantiates () {
+    Stylist myStylist = new Stylist("Rook");
+    assertTrue(myStylist instanceof Stylist);
+  }
+
+
+
 }
