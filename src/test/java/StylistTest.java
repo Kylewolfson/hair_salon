@@ -15,6 +15,11 @@ public class StylistTest {
     assertTrue(myStylist instanceof Stylist);
   }
 
+  @Test
+  public void all_emptyAtFirst() {
+    assertEquals(Stylist.all().size(), 0);
+  }
+
 
 
 }
