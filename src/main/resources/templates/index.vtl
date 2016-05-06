@@ -1,0 +1,16 @@
+<h1> Welcome to the Barbershop! </h1>
+
+<p>Hire a stylist:</p>
+
+<form action="/newstylist" method="post">
+  <label for="stylist">Stylist:</label>
+  <input id="stylist" name="stylist" type="text">
+
+  <button type="submit" class="btn btn-default">Add stylist</button>
+</form>
+
+<ul>
+  #foreach($stylist in $stylists)
+    <li><a href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
+  #end
+</ul>
