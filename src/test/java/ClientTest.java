@@ -28,11 +28,11 @@ public class ClientTest {
   }
 
   @Test
- public void find_findsClientInDatabase_true() {
-   Client myClient = new Client("Rook");
-   myClient.save();
-   Client savedClient = Client.find(myClient.getId());
-   assertTrue(myClient.equals(savedClient));
+  public void find_findsClientInDatabase_true() {
+    Client myClient = new Client("Rook");
+    myClient.save();
+    Client savedClient = Client.find(myClient.getId());
+    assertTrue(myClient.equals(savedClient));
  }
 
 }

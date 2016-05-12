@@ -29,9 +29,9 @@ public class Client {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO clients(name) VALUES (:name)";
       this.id = (int) con.createQuery(sql, true)
-      .addParameter("name", this.name)
-      .executeUpdate()
-      .getKey();
+        .addParameter("name", this.name)
+        .executeUpdate()
+        .getKey();
     }
   }
 
@@ -39,8 +39,8 @@ public class Client {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM clients WHERE id = :id";
       return con.createQuery(sql)
-      .addParameter("id", id)
-      .executeAndFetchFirst(Client.class);
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
     }
   }
 
@@ -56,15 +56,15 @@ public class Client {
   }
 
   public void assignStylist(int stylist_id) {
-  try(Connection con = DB.sql2o.open()) {
-    int id = this.getId();
-    this.stylist_id = stylist_id;
-    String sql = "UPDATE clients SET stylist_id = :stylist_id WHERE id = :client_id";
-    con.createQuery(sql)
-    .addParameter("stylist_id", stylist_id)
-    .addParameter("client_id", id)
-    .executeUpdate();
+    try(Connection con = DB.sql2o.open()) {
+      int id = this.getId();
+      this.stylist_id = stylist_id;
+      String sql = "UPDATE clients SET stylist_id = :stylist_id WHERE id = :client_id";
+      con.createQuery(sql)
+        .addParameter("stylist_id", stylist_id)
+        .addParameter("client_id", id)
+        .executeUpdate();
     }
-}
+  }
 
 }

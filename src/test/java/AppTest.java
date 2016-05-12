@@ -1,4 +1,4 @@
-
+import org.junit.*;
 import org.fluentlenium.adapter.FluentTest;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -17,13 +17,11 @@ public class AppTest extends FluentTest {
     return webDriver;
   }
 
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+
   @ClassRule
   public static ServerRule server = new ServerRule();
-
-  @ClassRule
-  public static DatabaseRule database = new DatabaseRule();
-
-
 
   @Test
   public void rootTest() {
@@ -32,14 +30,14 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-public void stylist_addedToPage_true() {
-  goTo("http://localhost:4567/");
-  fill("#stylist").with("Rook");
-  submit(".btn");
-  assertThat(pageSource()).contains("Rook");
-}
+  public void stylist_addedToPage_true() {
+    goTo("http://localhost:4567/");
+    fill("#stylist").with("Rook");
+    submit(".btn");
+    assertThat(pageSource()).contains("Rook");
+  }
 
-@Test
+  @Test
   public void client_addedToStylistPage_true() {
     goTo("http://localhost:4567/");
     fill("#stylist").with("Rook");

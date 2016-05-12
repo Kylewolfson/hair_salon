@@ -28,25 +28,25 @@ public class StylistTest {
   }
 
   @Test
- public void find_findsStylistInDatabase_true() {
-   Stylist myStylist = new Stylist("Rook");
-   myStylist.save();
-   Stylist savedStylist = Stylist.find(myStylist.getId());
-   assertTrue(myStylist.equals(savedStylist));
- }
+  public void find_findsStylistInDatabase_true() {
+    Stylist myStylist = new Stylist("Rook");
+    myStylist.save();
+    Stylist savedStylist = Stylist.find(myStylist.getId());
+    assertTrue(myStylist.equals(savedStylist));
+  }
 
- @Test
-public void getClients_retrievesAllClientsOfStylistFromDataBase_patients() {
-  Stylist myStylist = new Stylist ("Rook");
-  myStylist.save();
-  Client firstClient = new Client("Kyle");
-  firstClient.save();
-  firstClient.assignStylist(myStylist.getId());
-  Client secondClient = new Client("Kelly");
-  secondClient.save();
-  secondClient.assignStylist(myStylist.getId());
-  Client[] patients = new Client[] {firstClient, secondClient};
-  assertTrue(myStylist.getClients().containsAll(Arrays.asList(patients)));
-}
+  @Test
+  public void getClients_retrievesAllClientsOfStylistFromDataBase_patients() {
+    Stylist myStylist = new Stylist ("Rook");
+    myStylist.save();
+    Client firstClient = new Client("Kyle");
+    firstClient.save();
+    firstClient.assignStylist(myStylist.getId());
+    Client secondClient = new Client("Kelly");
+    secondClient.save();
+    secondClient.assignStylist(myStylist.getId());
+    Client[] patients = new Client[] {firstClient, secondClient};
+    assertTrue(myStylist.getClients().containsAll(Arrays.asList(patients)));
+  }
 
 }
